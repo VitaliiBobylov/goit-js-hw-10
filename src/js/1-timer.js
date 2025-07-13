@@ -42,7 +42,7 @@ class CountdownTimer {
     if (selected <= now) {
       iziToast.error({
         title: 'Error',
-        message: 'Please choose a date in the future',
+        message: '"Please choose a date in the future"',
         position: 'topRight',
       });
 
