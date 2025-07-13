@@ -10,48 +10,36 @@
     <link rel="modulepreload" crossorigin href="/goit-js-hw-10/assets/vendor-BbbuE1sJ.js">
     <link rel="stylesheet" crossorigin href="/goit-js-hw-10/assets/styles-PiYPr1ju.css">
     <link rel="stylesheet" crossorigin href="/goit-js-hw-10/assets/vendor-CZjNVMTf.css">
+    <link rel="stylesheet" crossorigin href="/goit-js-hw-10/assets/2-snackbar-BmN_4qbY.css">
   </head>
   <body>
+    <main>
+      <form class="snackbar-form">
+        <label>
+          Delay (ms)
+          <input type="number" name="delay" required />
+        </label>
 
+        <fieldset>
+          <legend>State</legend>
+          <label>
+            <input type="radio" name="state" value="fulfilled" required />
+            Fulfilled
+          </label>
+          <label>
+            <input type="radio" name="state" value="rejected" required />
+            Rejected
+          </label>
+        </fieldset>
 
- <main>
-
-
-
-     <form class="snackbar-form">
-  <label>
-    Delay (ms)
-    <input type="number" name="delay" required />
-  </label>
-
-  <fieldset>
-    <legend>State</legend>
-    <label>
-      <input type="radio" name="state" value="fulfilled" required />
-      Fulfilled
-    </label>
-    <label>
-      <input type="radio" name="state" value="rejected" required />
-      Rejected
-    </label>
-  </fieldset>
-
-  <button type="submit">Create notification</button>
-</form>
-
+        <button type="submit">Create notification</button>
+      </form>
 
       <div class="container">
         <h1 class="main-title">Snackbar</h1>
         <a class="back-link" href="./index.html">Go back</a>
       </div>
-
     </main>
-
-
-
-
-
-
 
   </body>
 </html>
