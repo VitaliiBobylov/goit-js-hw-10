@@ -1,15 +1,8 @@
-// Імпортуємо бібліотеки
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 
-
-
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
-
-
-
-
 
 class CountdownTimer {
   constructor({ dateInputSelector, startBtnSelector, outputSelectors }) {
@@ -22,16 +15,10 @@ class CountdownTimer {
       seconds: document.querySelector(outputSelectors.seconds),
     };
 
-
-
-
     this.targetDate = null;
     this.intervalId = null;
     this.init();
   }
-
-
-
 
   init() {
     this.startBtn.disabled = true;
@@ -49,7 +36,7 @@ class CountdownTimer {
     const selected = selectedDates[0];
     const now = new Date();
     if (selected <= now) {
-iziToast.error({
+      iziToast.error({
         title: 'Error',
         message: 'Illegal operation',
         position: 'topRight',
@@ -75,24 +62,25 @@ iziToast.error({
           message: 'Countdown finished!',
           position: 'topRight',
         });
-return;}
+        return;
+      }
       const time = this.convertMs(diff);
       this.updateDisplay(time);
     }, 1000);
   }
 
-updateDisplay({ days, hours, minutes, seconds }) {
+  updateDisplay({ days, hours, minutes, seconds }) {
     this.outputEls.days.textContent = String(days).padStart(2, '0');
     this.outputEls.hours.textContent = String(hours).padStart(2, '0');
     this.outputEls.minutes.textContent = String(minutes).padStart(2, '0');
     this.outputEls.seconds.textContent = String(seconds).padStart(2, '0');
   }
 
-convertMs(ms) {
-const second = 1000;
-const minute = second * 60;
-const hour = minute * 60;
-const day = hour * 24;
+  convertMs(ms) {
+    const second = 1000;
+    const minute = second * 60;
+    const hour = minute * 60;
+    const day = hour * 24;
 
     const days = Math.floor(ms / day);
     const hours = Math.floor((ms % day) / hour);
@@ -100,15 +88,15 @@ const day = hour * 24;
     const seconds = Math.floor((((ms % day) % hour) % minute) / second);
     return { days, hours, minutes, seconds };
   }
-};
+}
 
 new CountdownTimer({
   dateInputSelector: '#datetime-picker',
   startBtnSelector: '[data-start]',
   outputSelectors: {
-days: '[data-days]',
-hours: '[data-hours]',
-minutes: '[data-minutes]',
-seconds: '[data-seconds]',
+    days: '[data-days]',
+    hours: '[data-hours]',
+    minutes: '[data-minutes]',
+    seconds: '[data-seconds]',
   },
 });
