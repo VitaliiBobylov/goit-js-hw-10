@@ -22,7 +22,9 @@ class CountdownTimer {
 
   init() {
     this.startBtn.disabled = true;
+
     this.startBtn.addEventListener('click', this.start.bind(this));
+
     flatpickr(this.dateInput, {
       enableTime: true,
       time_24hr: true,
@@ -33,14 +35,17 @@ class CountdownTimer {
   }
 
   handleDateSelect(selectedDates) {
+
     const selected = selectedDates[0];
     const now = new Date();
+
     if (selected <= now) {
       iziToast.error({
         title: 'Error',
-        message: 'Illegal operation',
+        message: 'Please choose a date in the future',
         position: 'topRight',
       });
+
       this.startBtn.disabled = true;
       return;
     }
@@ -48,15 +53,33 @@ class CountdownTimer {
     this.targetDate = selected;
     this.startBtn.disabled = false;
   }
+
   start() {
+
     if (!this.targetDate) return;
+
+      this.startBtn.disabled = true;
+
+  this.dateInput.disabled = true;
+
+
+  
     clearInterval(this.intervalId);
+
     this.intervalId = setInterval(() => {
+
       const now = new Date();
+
       const diff = this.targetDate - now;
+
       if (diff <= 0) {
         clearInterval(this.intervalId);
+
         this.updateDisplay({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+this.startBtn.disabled = true;
+this.dateInput.disabled = false;
+
         iziToast.success({
           title: 'Timer',
           message: 'Countdown finished!',
@@ -64,6 +87,8 @@ class CountdownTimer {
         });
         return;
       }
+
+
       const time = this.convertMs(diff);
       this.updateDisplay(time);
     }, 1000);
